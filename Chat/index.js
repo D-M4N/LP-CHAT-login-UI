@@ -11,7 +11,7 @@
 // Then add the following lines of code:
 
 
-const firebaseConfig = {
+var firebaseConfig = {
   apiKey: "AIzaSyCXImSzbJhdzmVkcMzZc8LgN9EDaCH6WUw",
   authDomain: "lowpro-chat.firebaseapp.com",
   databaseURL: "https://lowpro-chat-default-rtdb.firebaseio.com",
@@ -22,9 +22,8 @@ const firebaseConfig = {
   measurementId: "G-BB1WMBCHER"
 };
   
- // firebase.initializeApp(firebaseConfig);
-  const app = initializeApp(firebaseConfig) 
-
+  firebase.initializeApp(firebaseConfig);
+  
   const db = firebase.database();
   
   const username = prompt("Please Tell Us Your Name");
