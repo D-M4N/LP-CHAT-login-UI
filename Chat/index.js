@@ -11,15 +11,16 @@
 // Then add the following lines of code:
 
 
-var firebaseConfig = {
-    apiKey: "AIzaSyCXImSzbJhdzmVkcMzZc8LgN9EDaCH6WUw",
-    authDomain: "lowpro-chat.firebaseapp.com",
-    databaseURL: "https://lowpro-chat-default-rtdb.firebaseio.com",
-    projectId: "lowpro-chat",
-    storageBucket: "lowpro-chat.appspot.com",
-    messagingSenderId: "401818287275",
-    appId: "1:401818287275:web:2d2e236e4c9d94a3cc0bee",
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyCXImSzbJhdzmVkcMzZc8LgN9EDaCH6WUw",
+  authDomain: "lowpro-chat.firebaseapp.com",
+  databaseURL: "https://lowpro-chat-default-rtdb.firebaseio.com",
+  projectId: "lowpro-chat",
+  storageBucket: "lowpro-chat.appspot.com",
+  messagingSenderId: "401818287275",
+  appId: "1:401818287275:web:2d2e236e4c9d94a3cc0bee",
+  measurementId: "G-BB1WMBCHER"
+};
   
   firebase.initializeApp(firebaseConfig);
   
