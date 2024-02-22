@@ -18,7 +18,6 @@ var firebaseConfig = {
     storageBucket: "lowpro-chat.appspot.com",
     messagingSenderId: "401818287275",
     appId: "1:401818287275:web:2d2e236e4c9d94a3cc0bee",
-    measurementId: "G-BB1WMBCHER"
   };
   
   firebase.initializeApp(firebaseConfig);
