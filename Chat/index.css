@@ -2,7 +2,7 @@
 To style your application you need to add some CSS to the index.css file. 
 Feel free to copy and paste the styles below to get you started: */
 
-/* body {
+body {
     background-color: #f3f2f3;
     margin: 0;
     padding: 0;
@@ -65,7 +65,7 @@ button {
 .sent span {
     margin-left: 5px;
     color: #6929ca;
-} */
+}
 
 /* Conclusion
 You have now built a simple realtime chat application using the Firebase SDK and Realtime Database as a datastore.
