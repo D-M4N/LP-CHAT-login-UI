@@ -22,8 +22,9 @@ const firebaseConfig = {
   measurementId: "G-BB1WMBCHER"
 };
   
-  firebase.initializeApp(firebaseConfig);
-  
+ // firebase.initializeApp(firebaseConfig);
+  const app = initializeApp(firebaseConfig) 
+
   const db = firebase.database();
   
   const username = prompt("Please Tell Us Your Name");
