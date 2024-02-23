@@ -55,7 +55,8 @@ fetchChat.on("child_added", function (snapshot) {
   document.getElementById("messages").innerHTML += message;
 });
 
-// Media Upload
+
+// media uploaD
 
 function uploadMedia(file) {
   const storageRef = firebase.storage().ref();
