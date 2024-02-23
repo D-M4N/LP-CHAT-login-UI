@@ -62,7 +62,12 @@ import {
 
 const resetPassword = email => sendPasswordResetEmail(auth, email)
 
-
+// Send password reset email
+sendPasswordResetEmail(auth, email)
+  .then(() => {
+    // Password reset email sent successfully
+    alert("A password reset email has been sent to your email address.");
+  })
 
 // CALL AN AUTHENTICATED API ENDOPOINT 
 
