@@ -1,53 +1,26 @@
-<!-- The index.html file will contain the HTML for your application as well as  
-links to the index.css, and index.js files, as well as the Firebase SDK -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>LowPro Chat</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <link rel="stylesheet" href="./index.css">
   </head>
-  <body> 
-
-   <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>LowPro Chat</title>
-        <link rel="stylesheet" href="./index.css">
-      </head>
-      <body>
-        <header>
-          <h2>LowPro Chat</h2>
-        </header>
-    
-        <div id="chat">
-          <!-- messages will display here -->
-          <ul id="messages"></ul>
-    
-          <!-- form to send message -->
-          <form id="message-form">
-            <input id="message-input" type="text" />
-            <button id="message-btn" type="submit">Send</button>
-          </form>
-        </div>
-        <!-- In the HTML above, you created a <header> with the name of your app. 
-            The <ul> element will be used to to display messages 
-                loaded from the server while the <form> element will enable users to submit their messages. -->
-        <!-- <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script> -->
-        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-        <script src="index.js"></script>
-      </body>  
-
-      </html>
-
-
- 
-<!-- Notice that the script tags for the Firebase SDKs and your index.js file are included in the 
-<body> element. These load the Firebase SDK and make it available to your application.
-The index.css file is also included in the <head> element and will be used to style the application. -->
+  <body>
+    <h1>LowPro Chat</h1>
+    <form id="message-form">
+      <input type="text" id="message-input" placeholder="Type your message here" required>
+      <button type="submit">Send</button>
+      <input type="file" id="image-input" accept="image/*" />
+      <button type="button" id="image-upload-btn">Upload Image</button>
+    </form>
+    <ul id="messages"></ul>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
