@@ -67,6 +67,45 @@ button {
     color: #6929ca;
 }
 
+button {
+    width: 25%;
+    height: 38px;
+}
+
+.media {
+    text-align: right;
+    background-color: #a79cb3;
+    margin-left: 50%;
+}
+
+.media span {
+    margin-left: 5px;
+    color: #6929ca;
+}
+
+.media-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .media-list li {
+    margin-bottom: 10px;
+  }
+  
+  .media-list img,
+  .media-list video {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .sent {
+    text-align: right;
+  }
+  
+  .receive {
+    text-align: left;
+  }
+
 /* Conclusion
 You have now built a simple realtime chat application using the Firebase SDK and Realtime Database as a datastore.
 
