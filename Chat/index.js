@@ -49,6 +49,11 @@ function sendMessage(e) {
     const timestamp = Date.now();
     const messageInput = document.getElementById("message-input");
     const message = messageInput.value;
+//new added: In your index.js file, you need to attach the 
+//sendMessage function to the form submit event. 
+//You can do this by selecting the form element and attaching the event listener:
+    const form = document.getElementById("message-form");
+    form.addEventListener("submit", sendMessage);
   
     // clear the input box
     messageInput.value = "";
