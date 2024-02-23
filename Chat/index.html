@@ -8,6 +8,22 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <link rel="stylesheet" href="./index.css">
+    <style>
+      #image-container {
+        width: 100%;
+        height: auto;
+        max-width: 400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      #image-container img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
   </head>
   <body>
     <h1>LowPro Chat</h1>
@@ -21,6 +37,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <ul id="messages"></ul>
+    <div id="image-container"></div>
     <script src="index.js"></script>
   </body>
 </html>
