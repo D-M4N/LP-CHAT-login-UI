@@ -55,17 +55,15 @@ fetchChat.on("child_added", function (snapshot) {
   document.getElementById("messages").innerHTML += message;
 });
 
-//display images
-
+// display images
 function displayImage(url) {
   const img = document.createElement("img");
   img.src = url;
   img.alt = "Image";
   document.getElementById("messages").appendChild(img);
 }
-// Replace "your-image-url" with the actual Firebase Storage download URL
-displayImage("lowpro-chat.appspot.com");
 
+// Replace "your-image-url" with the actual Firebase Storage download URL
 const storage = firebase.storage();
 const storageRef = storage.ref();
 const imageRef = storageRef.child("path/to/your/image.jpg");
@@ -77,15 +75,7 @@ imageRef.getDownloadURL().then((url) => {
   console.error("Error fetching image", error);
 });
 
-function displayImage(url) {
-  const img = document.createElement("img");
-  img.src = url;
-  img.alt = "Image";
-  document.getElementById("image-container").appendChild(img);
-}
-
-// media uploaD
-
+// media upload
 function uploadMedia(file) {
   const storageRef = firebase.storage().ref();
   const uploadTask = storageRef.child(`media/${file.name}`).put(file);
