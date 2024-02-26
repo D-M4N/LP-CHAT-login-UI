@@ -105,7 +105,7 @@ function saveMediaToDatabase(downloadURL) {
     media: downloadURL,
   });
 }
-
+//Button
 const mediaInput = document.getElementById("media-input");
 const mediaUploadBtn = document.getElementById("media-upload-btn");
 
@@ -138,3 +138,37 @@ fetchMedia.on("child_added", function (snapshot) {
   // Append the media on the page
   document.getElementById("messages").innerHTML += mediaElement;
 });
+
+// Deleting a message user created
+deleteMessage('chatRoom1', 'message123');
+
+const userId = firebase.auth().currentUser.uid;
+const message = await messageRef.get();
+const senderId = message.data().userId;
+
+if (userId === senderId) {
+  // The user is the sender of the message
+} else {
+  // The user is not the sender of the message
+}
+
+await messageRef.delete();
+
+
+// Function to delete a message
+async function deleteMessage(chatRoomId, messageId) {
+  const userId = firebase.auth().currentUser.uid;
+  const messageRef = firebase.firestore().collection('chats').doc(chatRoomId).collection('messages').doc(messageId);
+  const message = await messageRef.get();
+  const senderId = message.data().userId;
+
+  if (userId === senderId) {
+    messageRef.delete().then(() => {
+      console.log('Message deleted successfully');
+    }).catch((error) => {
+      console.error('Error deleting message: ', error);
+    });
+  } else {
+    console.log('User is not the sender of the message');
+  }
+}
