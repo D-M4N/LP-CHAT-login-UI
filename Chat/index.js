@@ -55,6 +55,7 @@ fetchChat.on("child_added", function (snapshot) {
   document.getElementById("messages").innerHTML += message;
 });
 
+
 // display images
 function displayImage(url) {
   const img = document.createElement("img");
