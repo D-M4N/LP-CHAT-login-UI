@@ -22,7 +22,7 @@ form.addEventListener("submit", sendMessage);
 function sendMessage(e) {
   e.preventDefault();
 
-  // get values to be submitted
+   // get values to be submitted
   const timestamp = Date.now();
   const messageInput = document.getElementById("message-input");
   const message = messageInput.value;
