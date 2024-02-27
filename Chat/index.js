@@ -101,11 +101,18 @@ function uploadMedia(file) {
 
 function saveMediaToDatabase(downloadURL) {
   const timestamp = Date.now();
-  db.ref("media/" + timestamp).set({
+  const message = {
     username,
     media: downloadURL,
-  });
+  };
+
+  // Save the message to the Firebase Realtime Database
+  db.ref("messages/" + timestamp).set(message);
 }
+
+
+
+
 //Button
 const mediaInput = document.getElementById("media-input");
 const mediaUploadBtn = document.getElementById("media-upload-btn");
@@ -116,6 +123,7 @@ mediaUploadBtn.addEventListener("click", () => {
   }
 });
 
+//Fetch Media
 const fetchMedia = db.ref("media/");
 
 fetchMedia.on("child_added", function (snapshot) {
