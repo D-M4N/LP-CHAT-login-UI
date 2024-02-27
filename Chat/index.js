@@ -1,4 +1,4 @@
-const firebaseConfig = {
+var firebaseConfig = {
   apiKey: "AIzaSyCXImSzbJhdzmVkcMzZc8LgN9EDaCH6WUw",
   authDomain: "lowpro-chat.firebaseapp.com",
   databaseURL: "https://lowpro-chat-default-rtdb.firebaseio.com",
