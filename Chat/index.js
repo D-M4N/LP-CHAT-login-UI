@@ -1,4 +1,4 @@
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyCXImSzbJhdzmVkcMzZc8LgN9EDaCH6WUw",
   authDomain: "lowpro-chat.firebaseapp.com",
   databaseURL: "https://lowpro-chat-default-rtdb.firebaseio.com",
@@ -13,40 +13,40 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
 
-// Get the chat history list element
-const chatHistoryList = document.getElementById("chat-history-list");
+// // Get the chat history list element
+// const chatHistoryList = document.getElementById("chat-history-list");
 
-// Listen for new messages in the "messages" collection in Firestore
-db.collection("messages").orderBy("timestamp").onSnapshot((snapshot) => {
-  // Clear the chat history list
-  chatHistoryList.innerHTML = "";
+// // Listen for new messages in the "messages" collection in Firestore
+// db.collection("messages").orderBy("timestamp").onSnapshot((snapshot) => {
+//   // Clear the chat history list
+//   chatHistoryList.innerHTML = "";
 
-  // Add each message to the chat history list
-  snapshot.docs.forEach((doc) => {
-    const message = doc.data();
-    const messageElement = document.createElement("li");
-    messageElement.textContent = message.text;
-    chatHistoryList.appendChild(messageElement);
-  });
-});
+//   // Add each message to the chat history list
+//   snapshot.docs.forEach((doc) => {
+//     const message = doc.data();
+//     const messageElement = document.createElement("li");
+//     messageElement.textContent = message.text;
+//     chatHistoryList.appendChild(messageElement);
+//   });
+// });
 
-// Get the send message button
-const sendMessageButton = document.getElementById("send-message-button");
+// // Get the send message button
+// const sendMessageButton = document.getElementById("send-message-button");
 
-// Add a click event listener to the send message button
-sendMessageButton.addEventListener("click", () => {
-  // Get the message text from the input field
-  const messageText = document.getElementById("message-input").value;
+// // Add a click event listener to the send message button
+// sendMessageButton.addEventListener("click", () => {
+//   // Get the message text from the input field
+//   const messageText = document.getElementById("message-input").value;
 
-  // Create a new message object
-  const message = {
-    text: messageText,
-    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-  };
+//   // Create a new message object
+//   const message = {
+//     text: messageText,
+//     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+//   };
 
   // Add the message to the "messages" collection in Firestore
-  db.collection("messages").add(message);
-});
+//   db.collection("messages").add(message);
+// });
 
 
 const username = prompt("Please Tell Us Your Name");
