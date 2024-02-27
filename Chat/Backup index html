@@ -1,0 +1,48 @@
+<!-- Media Upload Code -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LowPro Chat</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <link rel="stylesheet" href="./index.css">
+    <style>
+      #image-container {
+        width: 100%;
+        height: auto;
+        max-width: 400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      #image-container img {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>LowPro Chat</h1>
+    <form id="message-form">
+      <!-- Send Text button -->
+      <input type="text" id="message-input" placeholder="Type your message here" required>
+      <button type="submit">Send</button>
+      <!-- Send Image Button -->
+      <input type="file" id="image-input" accept="image/*" />
+      <button type="button" id="media-upload-btn">Upload Image</button>
+    </form>
+    <ul id="messages"></ul>
+    <ul id="media-list" class="media-list"></ul>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <ul id="messages"></ul>
+    <div id="image-container"></div>
+    <script src="index.js"></script>    
+  </body>
+</html>
