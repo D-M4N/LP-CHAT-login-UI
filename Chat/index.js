@@ -126,7 +126,6 @@ fetchChat.on("child_added", function (snapshot) {
   document.getElementById("messages").innerHTML += message;
 });
 
-
 // display images
 function displayImage(url) {
   const img = document.createElement("img");
@@ -177,6 +176,7 @@ function saveMediaToDatabase(downloadURL) {
     media: downloadURL,
   });
 }
+
 //Button
 const mediaInput = document.getElementById("media-input");
 const mediaUploadBtn = document.getElementById("media-upload-btn");
@@ -187,6 +187,7 @@ mediaUploadBtn.addEventListener("click", () => {
   }
 });
 
+// Fetch media
 const fetchMedia = db.ref("media/");
 
 fetchMedia.on("child_added", function (snapshot) {
@@ -210,4 +211,3 @@ fetchMedia.on("child_added", function (snapshot) {
   // Append the media on the page
   document.getElementById("messages").innerHTML += mediaElement;
 });
-
