@@ -10,10 +10,17 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.database();
-
 const username = prompt("Please Tell Us Your Name");
+
+// Get a reference to the "messages" node
+const messagesRef = db.ref("messages");
+
+// Save the message to the Firebase Realtime Database
+messagesRef.push({
+  username,
+  media: downloadURL,
+});
 
 // Sending Messages
 const form = document.getElementById("message-form");
@@ -116,6 +123,22 @@ function saveMediaToDatabase(downloadURL) {
 //   "rules": {
 //     ".read": "now < 1711144800000",  // 2024-3-23
 //     ".write": "now < 1711144800000",  // 2024-3-23
+//   }
+// }
+
+//Authorization rules
+// {
+//   "rules": {
+//     ".read": true,
+//     ".write": "auth != null"
+//   }
+// }
+
+//open rules
+// {
+//   "rules": {
+//     ".read": true,
+//     ".write": true
 //   }
 // }
 
