@@ -13,7 +13,6 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.database();
 
-
 // Get the chat history list element
 const chatHistoryList = document.getElementById("chat-history-list");
 
@@ -48,6 +47,7 @@ sendMessageButton.addEventListener("click", () => {
   // Add the message to the "messages" collection in Firestore
   db.collection("messages").add(message);
 });
+
 
 const username = prompt("Please Tell Us Your Name");
 
