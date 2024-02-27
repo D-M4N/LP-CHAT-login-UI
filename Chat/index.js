@@ -110,7 +110,14 @@ function saveMediaToDatabase(downloadURL) {
   db.ref("messages/" + timestamp).set(message);
 }
 
+//old rules
 
+// {
+//   "rules": {
+//     ".read": "now < 1711144800000",  // 2024-3-23
+//     ".write": "now < 1711144800000",  // 2024-3-23
+//   }
+// }
 
 
 //Button
