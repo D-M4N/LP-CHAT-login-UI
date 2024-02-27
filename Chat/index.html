@@ -1,3 +1,73 @@
+<!-- Appchat Code -->
+<script>
+  // Replace YOUR_FIREBASE_CONFIG_OBJECT with the Firebase configuration object that you copied from the Firebase console
+  const firebaseConfig = {
+  apiKey: "AIzaSyCXImSzbJhdzmVkcMzZc8LgN9EDaCH6WUw",
+  authDomain: "lowpro-chat.firebaseapp.com",
+  databaseURL: "https://lowpro-chat-default-rtdb.firebaseio.com",
+  projectId: "lowpro-chat",
+  storageBucket: "lowpro-chat.appspot.com",
+  messagingSenderId: "401818287275",
+  appId: "1:401818287275:web:2d2e236e4c9d94a3cc0bee",
+  measurementId: "G-BB1WMBCHER"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script>
+  // Sign in the user anonymously
+  firebase.auth().signInAnonymously().then(() => {
+    // User is signed in anonymously
+  }).catch((error) => {
+    // Handle sign-in errors
+    console.error("Error signing in: ", error);
+  });
+</script>
+<script>
+  // Get the message input and send button elements
+  const messageInput = document.getElementById("message-input");
+  const sendButton = document.getElementById("send-button");
+
+  // Send the message to Firestore
+  sendButton.addEventListener("click", () => {
+    if (messageInput.value) {
+      const message = {
+        text: messageInput.value,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        username: firebase.auth().currentUser.displayName || "Anonymous",
+      };
+
+      // Add the message to the "messages" collection in Firestore
+      db.collection("messages").add(message);
+
+      // Clear the message input
+      messageInput.value = "";
+    }
+  });
+</script>
+<script>
+  // Get the messages list element
+  const messagesList = document.getElementById("messages-list");
+
+  // Listen for new messages in the "messages" collection in Firestore
+  db.collection("messages").orderBy("timestamp").onSnapshot((snapshot) => {
+    // Clear the messages list
+    messagesList.innerHTML = "";
+
+    // Add each message to the messages list
+    snapshot.docs.forEach((doc) => {
+      const message = doc.data();
+      const messageElement = document.createElement("li");
+      messageElement.textContent = `${message.username}: ${message.text}`;
+      messagesList.appendChild(messageElement);
+    });
+  });
+</script>
+
+
+
+<!-- Media Upload Code -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
