@@ -41,6 +41,41 @@ function sendMessage(e) {
     message,
   });
 }
+//save chat history
+
+uploadTask.catch((error) => {
+  // Handle errors during upload
+  console.error("Error uploading media: ", error);
+});
+
+db.collection("messages").add(message)
+  .then(() => {
+    // Handle successful message sends
+    console.log("Message sent successfully");
+  })
+  .catch((error) => {
+    // Handle errors during message sending
+    console.error("Error sending message: ", error);
+  });
+
+  //rules
+
+  // rules_version = '2';
+  // service cloud.firestore {
+  //   match /databases/{database}/documents {
+  //     match /{document=**} {
+  //       allow read, write: if request.auth != null;
+  //     }
+  //   }
+  // }
+
+
+  // {
+  //   "rules": {
+  //     ".read": "now < 1711144800000",  // 2024-3-23
+  //     ".write": "now < 1711144800000",  // 2024-3-23
+  //   }
+  // }
 
 // Receiving Text Messages
 const fetchChat = db.ref("messages/");
