@@ -64,16 +64,18 @@ function sendMessage(e) {
 
 //save messages to database
 
-function saveMessageToDatabase(message) {
+function saveMessageToDatabase(username, message) {
   const timestamp = Date.now();
   const messageData = {
     username,
     message,
   };
-  
+
   // Save the message to the Firebase Realtime Database
   db.ref("messages/" + timestamp).set(messageData);
 }
+// Assuming 'username' and 'message' are defined somewhere in your code
+saveMessageToDatabase(username, message);
 
 // Receiving Text Messages
 const fetchChat = db.ref("messages/");
