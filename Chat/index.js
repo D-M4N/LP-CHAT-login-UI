@@ -28,6 +28,26 @@ const fileInput = document.getElementById('file-input');
 const uploadButton = document.getElementById('upload-button');
 const progressBarContainer = document.getElementById('progress-bar-container');
 const progressBar = document.getElementById('progress-bar');
+// Get the send button and message input
+const sendButton = document.getElementById('send-button');
+const messageInput = document.getElementById('message-input');
+
+// Add a click event listener to the send button
+sendButton.addEventListener('click', () => {
+  // Get the message text
+  const messageText = messageInput.value;
+
+   // Exit if the message is empty
+   if (!messageText) {
+    return;
+  }
+
+  // Save the message to the database
+  messagesRef.push().set({
+    message: messageText,
+    timestamp: firebase.database.ServerValue.TIMESTAMP
+  });
+});
 
 // Set the upload button's listener
 uploadButton.addEventListener('click', () => {
