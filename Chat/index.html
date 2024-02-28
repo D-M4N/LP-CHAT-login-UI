@@ -29,12 +29,18 @@
       border-radius: 5px;
     }
   </style>
+  <input type="file" id="file-input">
+  <button id="upload-button">Upload</button>
+  <div id="progress-bar-container">
+    <div id="progress-bar"></div>
+  </div>
 </head>
 <body>
   <input id="username" type="text" placeholder="Username" />
   <input id="message-input" type="text" placeholder="Message" />
   <button id="send-btn">Send</button>
   <ul id="messages" class="messages"></ul>
+  <ul id="messages"></ul>
   <input id="media-input" type="file" />
   <button id="media-upload-btn">Upload Media</button>
   <div id="progress-bar" class="progress-bar"></div>
@@ -59,6 +65,29 @@
     const usernameInput = document.getElementById("username");
     const messageInput = document.getElementById("message-input");
     const sendBtn = document.getElementById("send-btn");
+
+    // Get the messages reference
+  const messagesRef = firebase.database().ref('messages');
+
+  // Add a submit event listener to the chat form
+  const chatForm = document.getElementById('chat-form');
+  chatForm.addEventListener('submit', (event) => {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Get the message input value
+    const messageInput = document.getElementById('message-input');
+    const messageText = messageInput.value;
+
+    // Clear the message input value
+    messageInput.value = '';
+
+    // Add a new message to the database
+    messagesRef.push().set({
+      message: messageText,
+      timestamp: firebase.database.ServerValue.TIMESTAMP
+    });
+  });
 
     let username = "";
 
