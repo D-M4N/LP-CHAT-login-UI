@@ -132,6 +132,9 @@ sendButton.addEventListener('click', () => {
   messagesRef.push().set({
     message: messageText,
     timestamp: firebase.database.ServerValue.TIMESTAMP
+  })
+  .catch((error) => {
+    console.error('Error writing message to database:', error);
   });
 });
 
