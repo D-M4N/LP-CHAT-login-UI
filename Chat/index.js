@@ -23,6 +23,74 @@ const storageRef = storage.ref();
 const db = firebase.database().ref('https://lowpro-chat-default-rtdb.firebaseio.com');
 const database = firebase.database().ref();
 const messagesRef = database.child('messages');
+// Get the file input, upload button, and progress bar elements
+const fileInput = document.getElementById('file-input');
+const uploadButton = document.getElementById('upload-button');
+const progressBarContainer = document.getElementById('progress-bar-container');
+const progressBar = document.getElementById('progress-bar');
+
+// Set the upload button's listener
+uploadButton.addEventListener('click', () => {
+  // Get the selected file
+  const file = fileInput.files[0];
+
+// Create a reference to the file in the storage
+const fileRef = storageRef.child(`files/${file.name}`);
+
+// Create a task to upload the file
+const task = fileRef.put(file);
+
+// Set the progress bar's maximum value to the file size
+progressBar.max = file.size;
+
+// Set the progress bar's value to zero
+progressBar.value = 0;
+
+// Set the progress bar's visibility to true
+progressBarContainer.style.visibility = 'visible';
+
+// Add a listener for the task's progress
+task.on('state_changed', (snapshot) => {
+  // Get the progress of the upload
+  const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
+  // Set the progress bar's value to the progress
+  progressBar.value = snapshot.bytesTransferred;
+
+  // Set the progress bar's text to the progress
+  progressBar.textContent = `${Math.round(percentage)}%`;
+
+  // Set the progress bar's color based on the progress
+  if (percentage < 50) {
+    progressBar.style.backgroundColor = '#e66465';
+  } else if (percentage < 80) {
+    progressBar.style.backgroundColor = '#f7b801';
+  } else {
+    progressBar.style.backgroundColor = '#6fcf97';
+  }
+});
+
+// Add a listener for the task's completion
+task.then((snapshot) => {
+  // Get the download URL for the uploaded file
+  const downloadURL = snapshot.ref.getDownloadURL();
+
+  // Set the download URL to the message
+  database.push().set({
+    downloadURL: downloadURL,
+    timestamp: firebase.database.ServerValue.TIMESTAMP
+  }).then(() => {
+    // Hide the progress bar
+    progressBarContainer.style.visibility = 'hidden';
+  });
+}).catch((error) => {
+  // Handle the error
+  console.error(error);
+
+  // Hide the progress bar
+  progressBarContainer.style.visibility = 'hidden';
+});
+});
 
 
 //send messages button
@@ -59,6 +127,7 @@ function sendMessage(message) {
 
 
 
+
 // Function to upload media
 function uploadMedia(file) {
   const storageRef = storage.ref();
@@ -68,6 +137,9 @@ function uploadMedia(file) {
     "state_changed",
     (snapshot) => {
       // You can add a progress bar here if needed
+
+
+
     },
     (error) => {
       // Handle errors during upload
