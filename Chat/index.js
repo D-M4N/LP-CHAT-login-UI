@@ -123,11 +123,14 @@ function saveMediaToDatabase(downloadURL) {
   const timestamp = Date.now();
   const message = {
     username,
-    media: downloadURL,
+    media: downloadURL.toString(), // Convert the download URL to a string
   };
 
   // Save the message to the Firebase Realtime Database
-  db.ref("messages/" + timestamp).set(message);
+//   db.ref("messages/" + timestamp).set(message);
+// }
+// Save the message to the Firebase Realtime Database
+db.ref("media/" + timestamp).set(message);
 }
 
 //old rules
