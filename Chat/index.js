@@ -57,32 +57,31 @@ function saveMediaToDatabase(downloadURL) {
   db.ref("media/" + timestamp).set(message);
 }
 
-// Function to fetch media from the database
-function fetchMedia() {
-  const fetchMedia = db.ref("media/");
+// Fetch Media
+const fetchMedia = db.ref("media/");
 
-  fetchMedia.on("child_added", function (snapshot) {
-    const mediaData = snapshot.val();
-    let mediaElement = "";
+fetchMedia.on("child_added", function (snapshot) {
+  const mediaData = snapshot.val();
+  let mediaElement = "";
 
-    if (mediaData.media.endsWith(".jpg") || mediaData.media.endsWith(".jpeg") || mediaData.media.endsWith(".png")) {
-      mediaElement = `<li class=${
-        username === mediaData.username ? "sent" : "receive"
-      }><img src="${mediaData.media}" alt="${mediaData.username}'s image" /></li>`;
-    } else if (mediaData.media.endsWith(".mp4") || mediaData.media.endsWith(".mov") || mediaData.media.endsWith(".avi")) {
-      mediaElement = `<li class=${
-        username === mediaData.username ? "sent" : "receive"
-      }><video controls><source src="${mediaData.media}" type="video/${mediaData.media.split('.').pop()}"></video></li>`;
-    } else if (mediaData.media.endsWith(".mp3") || mediaData.media.endsWith(".wav")) {
-      mediaElement = `<li class=${
-        username === mediaData.username ? "sent" : "receive"
-      }><audio controls><source src="${mediaData.media}" type="audio/${mediaData.media.split('.').pop()}"></audio></li>`;
-    }
+  if (mediaData.media.endsWith(".jpg") || mediaData.media.endsWith(".jpeg") || mediaData.media.endsWith(".png")) {
+    mediaElement = `<li class=${
+      username === mediaData.username ? "sent" : "receive"
+    }><img src="${mediaData.media}" alt="${mediaData.username}'s image" /></li>`;
+  } else if (mediaData.media.endsWith(".mp4") || mediaData.media.endsWith(".mov") || mediaData.media.endsWith(".avi")) {
+    mediaElement = `<li class=${
+      username === mediaData.username ? "sent" : "receive"
+    }><video controls><source src="${mediaData.media}" type="video/${mediaData.media.split('.').pop()}"></video></li>`;
+  } else if (mediaData.media.endsWith(".mp3") || mediaData.media.endsWith(".wav")) {
+    mediaElement = `<li class=${
+      username === mediaData.username ? "sent" : "receive"
+    }><audio controls><source src="${mediaData.media}" type="audio/${mediaData.media.split('.').pop()}"></audio></li>`;
+  }
 
-    // Append the media on the page
-    document.getElementById("messages").innerHTML += mediaElement;
-  });
-}
+  // Append the media on the page
+  document.getElementById("messages").innerHTML += mediaElement;
+});
+
 
 // Button to trigger media upload
 const mediaInput = document.getElementById("media-input");
@@ -120,28 +119,4 @@ mediaUploadBtn.addEventListener("click", () => {
 // }
 
 
-//Fetch Media
-const fetchMedia = db.ref("media/");
-
-fetchMedia.on("child_added", function (snapshot) {
-  const mediaData = snapshot.val();
-  let mediaElement = "";
-
-  if (mediaData.media.endsWith(".jpg") || mediaData.media.endsWith(".jpeg") || mediaData.media.endsWith(".png")) {
-    mediaElement = `<li class=${
-      username === mediaData.username ? "sent" : "receive"
-    }><img src="${mediaData.media}" alt="${mediaData.username}'s image" /></li>`;
-  } else if (mediaData.media.endsWith(".mp4") || mediaData.media.endsWith(".mov") || mediaData.media.endsWith(".avi")) {
-    mediaElement = `<li class=${
-      username === mediaData.username ? "sent" : "receive"
-    }><video controls><source src="${mediaData.media}" type="video/${mediaData.media.split('.').pop()}"></video></li>`;
-  } else if (mediaData.media.endsWith(".mp3") || mediaData.media.endsWith(".wav")) {
-    mediaElement = `<li class=${
-      username === mediaData.username ? "sent" : "receive"
-    }><audio controls><source src="${mediaData.media}" type="audio/${mediaData.media.split('.').pop()}"></audio></li>`;
-  }
-
-  // Append the media on the page
-  document.getElementById("messages").innerHTML += mediaElement;
-});
 
