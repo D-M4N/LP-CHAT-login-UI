@@ -62,6 +62,19 @@ function sendMessage(e) {
   });
 }
 
+//save messages to database
+
+function saveMessageToDatabase(message) {
+  const timestamp = Date.now();
+  const messageData = {
+    username,
+    message,
+  };
+  
+  // Save the message to the Firebase Realtime Database
+  db.ref("messages/" + timestamp).set(messageData);
+}
+
 // Receiving Text Messages
 const fetchChat = db.ref("messages/");
 
