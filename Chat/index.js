@@ -20,7 +20,7 @@ firebase.initializeApp(firebaseConfig);
 // Get references to Firebase services
 const storage = firebase.storage();
 const storageRef = storage.ref();
-const db = firebase.database().ref('https://lowpro-chat-default-rtdb.firebaseio.com');
+const db = firebase.database().ref('https://lowpro-chat-default-rtdb.firebaseio.com/:"null"');
 
 // Function to send chat message
 function sendMessage(message) {
