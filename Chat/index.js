@@ -20,7 +20,33 @@ firebase.initializeApp(firebaseConfig);
 // Get references to Firebase services
 const storage = firebase.storage();
 const storageRef = storage.ref();
-const db = firebase.database().ref('https://lowpro-chat-default-rtdb.firebaseio.com/:"null"');
+const db = firebase.database().ref('https://lowpro-chat-default-rtdb.firebaseio.com');
+const database = firebase.database().ref();
+const messagesRef = database.child('messages');
+
+
+//send messages button
+
+// Add a click event listener to the send button
+sendButton.addEventListener('click', () => {
+  // Get the message text
+  const messageText = messageInput.value;
+
+  // Exit if the message is empty
+  if (!messageText) {
+    return;
+  }
+
+  // Clear the message input
+  messageInput.value = '';
+
+  // Save the message to the database
+  messagesRef.push().set({
+    message: messageText,
+    timestamp: firebase.database.ServerValue.TIMESTAMP
+  });
+});
+
 
 // Function to send chat message
 function sendMessage(message) {
@@ -30,6 +56,7 @@ function sendMessage(message) {
     timestamp: firebase.database.ServerValue.TIMESTAMP
   });
 }
+
 
 
 // Function to upload media
