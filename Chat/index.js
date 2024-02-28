@@ -20,7 +20,17 @@ firebase.initializeApp(firebaseConfig);
 // Get references to Firebase services
 const storage = firebase.storage();
 const storageRef = storage.ref();
-const db = firebase.database();
+const db = firebase.database().ref('https://lowpro-chat-default-rtdb.firebaseio.com');
+
+// Function to send chat message
+function sendMessage(message) {
+  // Use push() to generate a unique key for each message
+  db.push().set({
+    message: message,
+    timestamp: firebase.database.ServerValue.TIMESTAMP
+  });
+}
+
 
 // Function to upload media
 function uploadMedia(file) {
@@ -56,6 +66,7 @@ function saveMediaToDatabase(downloadURL) {
   // Save the message to the Firebase Realtime Database
   db.ref("media/" + timestamp).set(message);
 }
+
 
 // Fetch Media
 const fetchMedia = db.ref("media/");
