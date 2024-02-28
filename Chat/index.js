@@ -10,7 +10,20 @@ var firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
 const db = firebase.database();
+
+const sendMessage = async (message) => {
+  try {
+    await db.collection('https://lowpro-chat-default-rtdb.firebaseio.com/').add(message);
+  } catch (error) {
+    console.error('Error sending message:', error);
+  }
+};
+
 const username = prompt("Please Tell Us Your Name");
 
 // Get a reference to the "messages" node
