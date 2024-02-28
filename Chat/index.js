@@ -18,7 +18,7 @@ const db = firebase.database();
 
 const sendMessage = async (message) => {
   try {
-    await db.collection('https://lowpro-chat-default-rtdb.firebaseio.com/:Chat').add(message);
+    await db.collection('https://lowpro-chat-default-rtdb.firebaseio.com').add(message);
   } catch (error) {
     console.error('Error sending message:', error);
   }
