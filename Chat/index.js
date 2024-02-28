@@ -22,7 +22,7 @@ const storage = firebase.storage();
 const storageRef = storage.ref();
 const db = firebase.database().ref('https://lowpro-chat-default-rtdb.firebaseio.com');
 const database = firebase.database().ref();
-const messagesRef = database.child('messages');
+//const messagesRef = database.child('messages');
 // Get the file input, upload button, and progress bar elements
 const fileInput = document.getElementById('file-input');
 const uploadButton = document.getElementById('upload-button');
@@ -31,6 +31,28 @@ const progressBar = document.getElementById('progress-bar');
 // Get the send button and message input
 const sendButton = document.getElementById('send-button');
 const messageInput = document.getElementById('message-input');
+const messagesRef = firebase.database().ref('messages');
+
+// Display the chat history
+messagesRef.on('value', (snapshot) => {
+  const messages = snapshot.val();
+  const messagesList = document.getElementById('messages');
+  let messageHtml = '';
+
+  // Loop through the messages and create HTML elements for each message
+  for (const key in messages) {
+    if (messages.hasOwnProperty(key)) {
+      const message = messages[key];
+      const messageElement = document.createElement('li');
+      messageElement.textContent = `${message.username}: ${message.message}`;
+      messageHtml += messageElement.outerHTML;
+    }
+  }
+
+  // Add the message HTML to the messages list
+  messagesList.innerHTML = messageHtml;
+});
+
 
 // Add a click event listener to the send button
 sendButton.addEventListener('click', () => {
