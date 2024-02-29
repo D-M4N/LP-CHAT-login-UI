@@ -22,3 +22,19 @@ dependencies {
   implementation 'com.google.firebase:firebase-storage'
   // ...
 }
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin
+
+dependencies {
+  // ...
+  implementation 'com.google.firebase:firebase-database:19.7.0'
+  implementation 'com.google.firebase:firebase-auth:19.4.0'
+  // ...
+}
+
+buildscript {
+  dependencies {
+    // ...
+    classpath 'com.google.gms:google-services:4.3.8'  // Google Services plugin
+  }
+}
