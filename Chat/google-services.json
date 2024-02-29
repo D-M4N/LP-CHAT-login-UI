@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "401818287275",
+    "firebase_url": "https://lowpro-chat-default-rtdb.firebaseio.com",
+    "project_id": "lowpro-chat",
+    "storage_bucket": "lowpro-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401818287275:android:b805e802a435c619cc0bee",
+        "android_client_info": {
+          "package_name": "LowPro.Chat.App"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401818287275-rkfq0garl5pu26hhjjkclsir2ne5tsfb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+                    "current_key": "AIzaSyCXImSzbJhdzmVkcMzZc8LgN9EDaCH6WUw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401818287275-rkfq0garl5pu26hhjjkclsir2ne5tsfb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
+

@@ -33,6 +33,7 @@ const sendButton = document.getElementById('send-button');
 const messageInput = document.getElementById('message-input');
 const messagesRef = firebase.database().ref('messages');
 
+
 // Display the chat history
 messagesRef.on('value', (snapshot) => {
   const messages = snapshot.val();
@@ -280,3 +281,7 @@ mediaUploadBtn.addEventListener("click", () => {
 //     ".write": "auth != null"
 //   }
 // }
+
+//android API
+
+// "current_key": "AIzaSyB9i4PonJOUPST_ild7ngTRBqj5ZO5Ggqs"

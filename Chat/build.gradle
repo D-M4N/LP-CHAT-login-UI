@@ -1,0 +1,24 @@
+buildscript {
+  repositories {
+    // Check for the latest URL here: https://developers.google.com/android/guides/google-services-plugin
+    google()
+  }
+  dependencies {
+    // ...
+    classpath 'com.google.gms:google-services:4.3.10'
+  }
+}
+
+apply plugin: 'com.android.application'
+// ...
+apply plugin: 'com.google.gms.google-services'  // Google Services plugin
+
+dependencies {
+  // ...
+  implementation platform('com.google.firebase:firebase-bom:29.0.3')
+  implementation 'com.google.firebase:firebase-analytics'
+  implementation 'com.google.firebase:firebase-auth'
+  implementation 'com.google.firebase:firebase-firestore'
+  implementation 'com.google.firebase:firebase-storage'
+  // ...
+}
