@@ -48,7 +48,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
   <script>
-    const firebaseConfig = {
+    //initialize firebase
+    var firebaseConfig = {
       apiKey: "AIzaSyCXImSzbJhdzmVkcMzZc8LgN9EDaCH6WUw",
       authDomain: "lowpro-chat.firebaseapp.com",
       databaseURL: "https://lowpro-chat-default-rtdb.firebaseio.com",
@@ -57,14 +58,53 @@
       messagingSenderId: "401818287275",
       appId: "1:401818287275:web:2d2e236e4c9d94a3cc0bee",
     };
-
     firebase.initializeApp(firebaseConfig);
+    
     const db = firebase.database();
     const storage = firebase.storage();
 
     const usernameInput = document.getElementById("username");
     const messageInput = document.getElementById("message-input");
     const sendBtn = document.getElementById("send-btn");
+
+    // Get a reference to the database
+    var database = firebase.database();
+
+    // Get a reference to the messages node
+    var messagesRef = database.ref("messages");
+
+    // Create a new message object
+    var message = {
+      user: "John Doe",
+      text: "Hello, world!"
+    };
+
+    // Write the message to the database
+    messagesRef.push(message);
+
+    // Get a reference to the database
+  var database = firebase.database();
+
+  // Get a reference to the messages node
+  var messagesRef = database.ref("messages");
+
+  // Create a query to get the latest 10 messages
+  var query = messagesRef.orderByChild("timestamp").limitToLast(10);
+
+  // Get the data as a list of messages
+  query.on("value", function(snapshot) {
+    var messages = [];
+    snapshot.forEach(function(childSnapshot) {
+      var message = childSnapshot.val();
+      messages.push(message);
+    });
+
+  // Display the messages in your app
+  messages.forEach(function(message) {
+    console.log(message.user + ": " + message.text);
+  });
+});
+
 
     // Get the messages reference
   const messagesRef = firebase.database().ref('messages');
