@@ -8,6 +8,17 @@ public class MyApplication extends Application {
   }
 }
 
+//Get a reference to your Realtime Database:
+
+FirebaseDatabase database = FirebaseDatabase.getInstance();
+DatabaseReference myRef = database.getReference("messages");
+
+//Add data to the Realtime Database:
+
+String key = myRef.push().getKey();
+Message message = new Message("user1", "user2", "Hello World!", System.currentTimeMillis());
+myRef.child(key).setValue(message);
+
 //Here is an example of how to write data to the database:
 
 import com.google.firebase.database.FirebaseDatabase;
