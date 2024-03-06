@@ -20,7 +20,7 @@ firebase.initializeApp(firebaseConfig);
 // Get references to Firebase services
 const storage = firebase.storage();
 const storageRef = storage.ref();
-const db = firebase.database().ref('https://lowpro-chat-default-rtdb.firebaseio.com');
+const db = firebase.database().ref('null');
 const database = firebase.database().ref();
 //const messagesRef = database.child('messages');
 // Get the file input, upload button, and progress bar elements
