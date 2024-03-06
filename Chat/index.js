@@ -20,7 +20,7 @@ firebase.initializeApp(firebaseConfig);
 // Get references to Firebase services
 const storage = firebase.storage();
 const storageRef = storage.ref();
-const db = firebase.database().ref('null');
+const db = firebase.database().ref('https://lowpro-chat-default-rtdb.firebaseio.com');
 const database = firebase.database().ref();
 //const messagesRef = database.child('messages');
 // Get the file input, upload button, and progress bar elements
@@ -176,7 +176,7 @@ function onButtonClick(buttonId) {
   if (buttonId === 'sendButton') {
     // Send data to Firebase
     var database = firebase.database();
-    var dataRef = database.ref('https://lowpro-chat-default-rtdb.firebaseio.com');
+    var dataRef = database.ref('null');
     dataRef.push({
       clickTime: firebase.database.ServerValue.TIMESTAMP
     });
