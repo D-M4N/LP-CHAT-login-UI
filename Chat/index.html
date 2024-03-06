@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Chat History</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chat App</title>
   <style>
@@ -36,6 +37,7 @@
   </div>
 </head>
 <body>
+  <div id="messages"></div>
   <input id="username" type="text" placeholder="Username" />
   <input id="message-input" type="text" placeholder="Message" />
   <button id="sendButton">Send</button>
@@ -60,6 +62,30 @@
     };
     firebase.initializeApp(firebaseConfig);
     
+    // Get a reference to the database
+    var database = firebase.database();
+
+// Get a reference to the messages node
+var messagesRef = database.ref('https://lowpro-chat-default-rtdb.firebaseio.com');
+
+// Listen for new messages and add them to the messages div
+messagesRef.on('child_added', function(snapshot) {
+  var message = snapshot.val();
+  var messageDiv = document.createElement('div');
+  messageDiv.textContent = message.text;
+  document.getElementById('messages').appendChild(messageDiv);
+});
+
+// Listen for new pictures and add them to the messages div
+var picturesRef = database.ref('lowpro-chat.appspot.com');
+picturesRef.on('child_added', function(snapshot) {
+  var picture = snapshot.val();
+  var pictureImg = document.createElement('img');
+  pictureImg.src = picture.url;
+  document.getElementById('messages').appendChild(pictureImg);
+});
+    
+    
     const db = firebase.database();
     const storage = firebase.storage();
 
@@ -71,7 +97,7 @@
     var database = firebase.database();
 
     // Get a reference to the messages node
-    var messagesRef = database.ref("messages");
+    var messagesRef = database.ref("https://lowpro-chat-default-rtdb.firebaseio.com");
 
     // Create a new message object
     var message = {
@@ -107,7 +133,7 @@
 
 
     // Get the messages reference
-  const messagesRef = firebase.database().ref('messages');
+  const messagesRef = firebase.database().ref('https://lowpro-chat-default-rtdb.firebaseio.com');
 
   // Add a submit event listener to the chat form
   const chatForm = document.getElementById('chat-form');
@@ -169,3 +195,5 @@
 
     const storageRef = storage.ref();
     const imageRef = storageRef.child("path/to/your/image");
+
+    
