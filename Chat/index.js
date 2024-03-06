@@ -138,39 +138,50 @@ task.then((snapshot) => {
 
 //send messages button
 
-// Add a click event listener to the send button
-sendButton.addEventListener('click', () => {
-  // Get the message text
-  const messageText = messageInput.value;
+// // Add a click event listener to the send button
+// sendButton.addEventListener('click', () => {
+//   // Get the message text
+//   const messageText = messageInput.value;
 
-  // Exit if the message is empty
-  if (!messageText) {
-    return;
+//   // Exit if the message is empty
+//   if (!messageText) {
+//     return;
+//   }
+
+//   // Clear the message input
+//   messageInput.value = '';
+
+//   // Save the message to the database
+//   messagesRef.push().set({
+//     message: messageText,
+//     timestamp: firebase.database.ServerValue.TIMESTAMP
+//   })
+//   .catch((error) => {
+//     console.error('Error writing message to database:', error);
+//   });
+// });
+
+
+// // Function to send chat message
+// function sendMessage(message) {
+//   // Use push() to generate a unique key for each message
+//   db.push().set({
+//     message: message,
+//     timestamp: firebase.database.ServerValue.TIMESTAMP
+//   });
+// }
+
+//new button send
+function onButtonClick(buttonId) {
+  if (buttonId === '<BUTTON_ID>') {
+    // Send data to Firebase
+    var database = firebase.database();
+    var dataRef = database.ref('<DATABASE_NAME>');
+    dataRef.push({
+      clickTime: firebase.database.ServerValue.TIMESTAMP
+    });
   }
-
-  // Clear the message input
-  messageInput.value = '';
-
-  // Save the message to the database
-  messagesRef.push().set({
-    message: messageText,
-    timestamp: firebase.database.ServerValue.TIMESTAMP
-  })
-  .catch((error) => {
-    console.error('Error writing message to database:', error);
-  });
-});
-
-
-// Function to send chat message
-function sendMessage(message) {
-  // Use push() to generate a unique key for each message
-  db.push().set({
-    message: message,
-    timestamp: firebase.database.ServerValue.TIMESTAMP
-  });
 }
-
 
 
 
