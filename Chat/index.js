@@ -173,10 +173,10 @@ task.then((snapshot) => {
 
 //new button send
 function onButtonClick(buttonId) {
-  if (buttonId === '<BUTTON_ID>') {
+  if (buttonId === 'sendButton') {
     // Send data to Firebase
     var database = firebase.database();
-    var dataRef = database.ref('<DATABASE_NAME>');
+    var dataRef = database.ref('https://lowpro-chat-default-rtdb.firebaseio.com');
     dataRef.push({
       clickTime: firebase.database.ServerValue.TIMESTAMP
     });
