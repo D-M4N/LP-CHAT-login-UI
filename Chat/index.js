@@ -17,6 +17,7 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+
 // Get references to Firebase services
 const storage = firebase.storage();
 const storageRef = storage.ref();
@@ -176,7 +177,7 @@ function onButtonClick(buttonId) {
   if (buttonId === 'sendButton') {
     // Send data to Firebase
     var database = firebase.database();
-    var dataRef = database.ref('https://lowpro-chat-default-rtdb.firebaseio.com');
+    var dataRef = database.ref('messages');
     dataRef.push({
       clickTime: firebase.database.ServerValue.TIMESTAMP
     });
