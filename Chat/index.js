@@ -176,7 +176,7 @@ function onButtonClick(buttonId) {
   if (buttonId === 'sendButton') {
     // Send data to Firebase
     var database = firebase.database();
-    var dataRef = database.ref('lowpro-chat-default-rtdb.firebaseio');
+    var dataRef = database.ref('https://lowpro-chat-default-rtdb.firebaseio.com');
     dataRef.push({
       clickTime: firebase.database.ServerValue.TIMESTAMP
     });
