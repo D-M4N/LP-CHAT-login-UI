@@ -18,33 +18,33 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 // Get references to Firebase services
-var storage = firebase.storage();
-var storageRef = storage.ref();
-var db = firebase.database().ref('https://lowpro-chat-default-rtdb.firebaseio.com');
-var database = firebase.database().ref();
+const storage = firebase.storage();
+const storageRef = storage.ref();
+const db = firebase.database().ref('https://lowpro-chat-default-rtdb.firebaseio.com');
+const database = firebase.database().ref();
 //const messagesRef = database.child('messages');
 // Get the file input, upload button, and progress bar elements
-var fileInput = document.getElementById('file-input');
-var uploadButton = document.getElementById('upload-button');
-var progressBarContainer = document.getElementById('progress-bar-container');
-var progressBar = document.getElementById('progress-bar');
+const fileInput = document.getElementById('file-input');
+const uploadButton = document.getElementById('upload-button');
+const progressBarContainer = document.getElementById('progress-bar-container');
+const progressBar = document.getElementById('progress-bar');
 // Get the send button and message input
-var sendButton = document.getElementById('send-button');
-var messageInput = document.getElementById('message-input');
-var messagesRef = firebase.database().ref('messages');
+const sendButton = document.getElementById('send-button');
+const messageInput = document.getElementById('message-input');
+const messagesRef = firebase.database().ref('messages');
 
 
 // Display the chat history
 messagesRef.on('value', (snapshot) => {
-  var messages = snapshot.val();
-  var messagesList = document.getElementById('messages');
+  const messages = snapshot.val();
+  const messagesList = document.getElementById('messages');
   let messageHtml = '';
 
   // Loop through the messages and create HTML elements for each message
-  for (var key in messages) {
+  for (const key in messages) {
     if (messages.hasOwnProperty(key)) {
-      var message = messages[key];
-      var messageElement = document.createElement('li');
+      const message = messages[key];
+      const messageElement = document.createElement('li');
       messageElement.textContent = `${message.username}: ${message.message}`;
       messageHtml += messageElement.outerHTML;
     }
@@ -58,7 +58,7 @@ messagesRef.on('value', (snapshot) => {
 // Add a click event listener to the send button
 sendButton.addEventListener('click', () => {
   // Get the message text
-  var messageText = messageInput.value;
+  const messageText = messageInput.value;
 
    // Exit if the message is empty
    if (!messageText) {
@@ -75,13 +75,13 @@ sendButton.addEventListener('click', () => {
 // Set the upload button's listener
 uploadButton.addEventListener('click', () => {
   // Get the selected file
-  var file = fileInput.files[0];
+  const file = fileInput.files[0];
 
 // Create a reference to the file in the storage
-var fileRef = storageRef.child(`files/${file.name}`);
+const fileRef = storageRef.child(`files/${file.name}`);
 
 // Create a task to upload the file
-var task = fileRef.put(file);
+const task = fileRef.put(file);
 
 // Set the progress bar's maximum value to the file size
 progressBar.max = file.size;
@@ -95,7 +95,7 @@ progressBarContainer.style.visibility = 'visible';
 // Add a listener for the task's progress
 task.on('state_changed', (snapshot) => {
   // Get the progress of the upload
-  var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  const percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
   // Set the progress bar's value to the progress
   progressBar.value = snapshot.bytesTransferred;
@@ -116,7 +116,7 @@ task.on('state_changed', (snapshot) => {
 // Add a listener for the task's completion
 task.then((snapshot) => {
   // Get the download URL for the uploaded file
-  var downloadURL = snapshot.ref.getDownloadURL();
+  const downloadURL = snapshot.ref.getDownloadURL();
 
   // Set the download URL to the message
   database.push().set({
@@ -187,8 +187,8 @@ function onButtonClick(buttonId) {
 
 // Function to upload media
 function uploadMedia(file) {
-  var storageRef = storage.ref();
-  var uploadTask = storageRef.child(`media/${file.name}`).put(file);
+  const storageRef = storage.ref();
+  const uploadTask = storageRef.child(`media/${file.name}`).put(file);
 
   uploadTask.on(
     "state_changed",
@@ -213,8 +213,8 @@ function uploadMedia(file) {
 
 // Function to save media to the database
 function saveMediaToDatabase(downloadURL) {
-  var timestamp = firebase.database.ServerValue.TIMESTAMP;
-  var message = {
+  const timestamp = firebase.database.ServerValue.TIMESTAMP;
+  const message = {
     username,
     media: downloadURL,
   };
@@ -225,10 +225,10 @@ function saveMediaToDatabase(downloadURL) {
 
 
 // Fetch Media
-var fetchMedia = db.ref("media/");
+const fetchMedia = db.ref("media/");
 
 fetchMedia.on("child_added", function (snapshot) {
-  var mediaData = snapshot.val();
+  const mediaData = snapshot.val();
   let mediaElement = "";
 
   if (mediaData.media.endsWith(".jpg") || mediaData.media.endsWith(".jpeg") || mediaData.media.endsWith(".png")) {
@@ -251,8 +251,8 @@ fetchMedia.on("child_added", function (snapshot) {
 
 
 // Button to trigger media upload
-var mediaInput = document.getElementById("media-input");
-var mediaUploadBtn = document.getElementById("media-upload-btn");
+const mediaInput = document.getElementById("media-input");
+const mediaUploadBtn = document.getElementById("media-upload-btn");
 
 mediaUploadBtn.addEventListener("click", () => {
   if (mediaInput.files.length > 0) {
